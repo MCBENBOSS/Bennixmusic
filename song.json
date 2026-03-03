@@ -1,7 +1,22 @@
 [
-  {"title":"MC BEN - Heavenly Boy","file":"mcben-heavenly-boy.mp3"},
-  {"title":"MC BEN - Temptation","file":"temptation.mp3"},
-  {"title":"MC BEN - Ginger","file":"ginger.mp3"},
-  {"title":"MC BEN - Fall For You","file":"fall-for-you.mp3"},
-  {"title":"MC BEN - Confuse","file":"confuse.mp3"}
+  {
+    "title": "MC BEN X HEAVENLY BOY - True Life Story",
+    "file": "mcben-heavenly-boy.mp3"
+  },
+  {
+    "title": "Nairaty ft MC BEN - Ginger",
+    "file": "ginger.mp3"
+  },
+  {
+    "title": "MC BEN - Temptation",
+    "file": "temptation.mp3"
+  },
+  {
+    "title": "MC BEN - Fall For You",
+    "file": "fall-for-you.mp3"
+  },
+  {
+    "title": "MC BEN - Confuse",
+    "file": "confuse.mp3"
+  }
 ]

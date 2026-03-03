@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bennix Music | Freebeats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">FREEBEATS</div>
+
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="music.html">Music</a> |
+    <a href="freebeat.html">Freebeats</a> |
+    <a href="mixtape.html">Mixtapes</a> |
+    <a href="video.html">Videos</a> |
+    <a href="news.html">News</a> |
+    <a href="about.html">About</a>
+</nav>
+
+<div class="section" id="freebeats-container"></div>
+
+<footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
+
+<script>
+const freebeats = [
+    {title:"Freebeat 1", file:"freebeats/freebeat1.mp3"},
+    {title:"Freebeat 2", file:"freebeats/freebeat2.mp3"},
+    {title:"Freebeat 3", file:"freebeats/freebeat3.mp3"}
+];
+
+const container = document.getElementById("freebeats-container");
+
+freebeats.forEach(beat => {
+    const div = document.createElement("div");
+    div.className = "music-card";
+    div.innerHTML = `
+        <p>${beat.title}</p>
+        <audio controls>
+            <source src="${beat.file}" type="audio/mpeg">
+        </audio>
+        <br>
+        <a href="${beat.file}" download><button>Download</button></a>
+        <button onclick="shareBeat('${beat.title}','${beat.file}')">Share</button>
+    `;
+    container.appendChild(div);
+});
+
+function shareBeat(title,path){
+    const fullLink = window.location.origin + "/" + path;
+    if(navigator.share){
+        navigator.share({title:title,text:"Listen to this freebeat:",url:fullLink})
+        .catch(()=>alert("Sharing failed"));
+    } else {
+        prompt("Copy this link:", fullLink);
+    }
+}
+</script>
+
+</body>
+</html>

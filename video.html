@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bennix Music | Music</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">ALL MUSIC</div>
+
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="music.html">Music</a> |
+    <a href="freebeat.html">Freebeats</a> |
+    <a href="mixtape.html">Mixtapes</a> |
+    <a href="video.html">Videos</a> |
+    <a href="news.html">News</a> |
+    <a href="about.html">About</a>
+</nav>
+
+<div class="section" id="songs-container"></div>
+
+<footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
+
+<script>
+// List all songs (use exact filenames)
+const songs = [
+    {title:"MC BEN X HEAVENLY BOY - True Life Story", file:"mcben-heavenly-boy.mp3"},
+    {title:"Nairaty ft MC BEN - Ginger", file:"ginger.mp3"},
+    {title:"MC BEN - Temptation", file:"temptation.mp3"},
+    {title:"MC BEN - Fall For You", file:"fall-for-you.mp3"},
+    {title:"MC BEN - Confuse", file:"confuse.mp3"}
+];
+
+const container = document.getElementById("songs-container");
+
+songs.forEach(song => {
+    const div = document.createElement("div");
+    div.className = "music-card";
+    div.innerHTML = `
+        <p>${song.title}</p>
+        <audio controls>
+            <source src="songs/${song.file}" type="audio/mpeg">
+        </audio>
+        <br>
+        <a href="songs/${song.file}" download><button>Download</button></a>
+        <button onclick="shareSong('${song.title}','songs/${song.file}')">Share</button>
+    `;
+    container.appendChild(div);
+});
+
+function shareSong(title, path){
+    const fullLink = window.location.origin + "/" + path;
+    if(navigator.share){
+        navigator.share({title:title,text:"Listen on BENNIX MUSIC",url:fullLink})
+        .catch(()=>alert("Sharing failed"));
+    } else {
+        prompt("Copy this link:", fullLink);
+    }
+}
+</script>
+
+</body>
+</html>

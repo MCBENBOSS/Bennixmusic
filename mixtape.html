@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bennix Music | Mixtapes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">MIXTAPES</div>
+
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="music.html">Music</a> |
+    <a href="freebeat.html">Freebeats</a> |
+    <a href="mixtape.html">Mixtapes</a> |
+    <a href="video.html">Videos</a> |
+    <a href="news.html">News</a> |
+    <a href="about.html">About</a>
+</nav>
+
+<div class="section" id="mixtape-container"></div>
+
+<footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
+
+<script>
+const mixtapes = [
+    {title:"Mixtape 1", file:"mixtapes/mixtape1.mp3"},
+    {title:"Mixtape 2", file:"mixtapes/mixtape2.mp3"}
+];
+
+const container = document.getElementById("mixtape-container");
+
+mixtapes.forEach(mt => {
+    const div = document.createElement("div");
+    div.className = "music-card";
+    div.innerHTML = `
+        <p>${mt.title}</p>
+        <audio controls>
+            <source src="${mt.file}" type="audio/mpeg">
+        </audio>
+        <br>
+        <a href="${mt.file}" download><button>Download</button></a>
+        <button onclick="shareMixtape('${mt.title}','${mt.file}')">Share</button>
+    `;
+    container.appendChild(div);
+});
+
+function shareMixtape(title,path){
+    const fullLink = window.location.origin + "/" + path;
+    if(navigator.share){
+        navigator.share({title:title,text:"Listen to this mixtape:",url:fullLink})
+        .catch(()=>alert("Sharing failed"));
+    } else {
+        prompt("Copy this link:", fullLink);
+    }
+}
+</script>
+
+</body>
+  </html>

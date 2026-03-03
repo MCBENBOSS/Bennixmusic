@@ -1,13 +1,13 @@
-<!DO<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Bennix Music | Music</title>
+<title>Bennix Music | Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="top-bar">MUSIC</div>
+<div class="top-bar">WELCOME TO BENNIX MUSIC</div>
 
 <nav>
   <a href="index.html">Home</a> |
@@ -21,35 +21,42 @@
   <a href="https://mcbenboss.rechargewebsite.com" target="_blank">Recharge & Data</a>
 </nav>
 
-<div class="section-title">ALL SONGS</div>
-<div id="songs-container"></div>
+<header>
+  <h1>Bennix Music</h1>
+  <p>Afrobeat | Global Sound | Energy</p>
+  <a href="music.html"><button>Listen Now</button></a>
+</header>
+
+<section class="section-title">FEATURED SONGS</section>
+<div id="featured-songs-container"></div>
 
 <footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
 
 <script>
-// List of your songs
-const songs = [
-  { title: "MC BEN X HEAVENLY BOY - True Life Story", file: "mcben-heavenly-boy.mp3" }
-];
+// Load songs from JSON
+fetch('songs.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("featured-songs-container");
 
-const container = document.getElementById("songs-container");
-
-// Create music cards dynamically
-songs.forEach(song => {
-  const div = document.createElement("div");
-  div.className = "music-card";
-  div.innerHTML = `
-    <h3>${song.title}</h3>
-    <audio controls>
-      <source src="songs/${song.file}" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <br>
-    <a href="songs/${song.file}" download><button>Download</button></a>
-    <button onclick="shareSong('${song.title}')">Share</button>
-  `;
-  container.appendChild(div);
-});
+    // Show only the first 3 songs as featured
+    data.slice(0, 3).forEach(song => {
+      const div = document.createElement("div");
+      div.className = "music-card";
+      div.innerHTML = `
+        <h3>${song.title}</h3>
+        <audio controls>
+          <source src="songs/${song.file}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <br>
+        <a href="songs/${song.file}" download><button>Download</button></a>
+        <button onclick="shareSong('${song.title}')">Share</button>
+      `;
+      container.appendChild(div);
+    });
+  })
+  .catch(err => console.error("Error loading songs:", err));
 
 // Share function
 function shareSong(title){
@@ -64,4 +71,4 @@ function shareSong(title){
 </script>
 
 </body>
-</html>￼Enter
+                              </html>

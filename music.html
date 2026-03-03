@@ -27,30 +27,28 @@
 <footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
 
 <script>
-// List of your songs
-const songs = [
-  { title: "MC BEN X HEAVENLY BOY - True Life Story", file: "mcben-heavenly-boy.mp3" }
-];
-
-// Reference to the container
-const container = document.getElementById("songs-container");
-
-// Create song cards
-songs.forEach(song => {
-  const div = document.createElement("div");
-  div.className = "music-card";
-  div.innerHTML = `
-    <h3>${song.title}</h3>
-    <audio controls>
-      <source src="songs/${song.file}" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <br>
-    <a href="songs/${song.file}" download><button>Download</button></a>
-    <button onclick="shareSong('${song.title}')">Share</button>
-  `;
-  container.appendChild(div);
-});
+// Load songs from JSON
+fetch('songs.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("songs-container");
+    data.forEach(song => {
+      const div = document.createElement("div");
+      div.className = "music-card";
+      div.innerHTML = `
+        <h3>${song.title}</h3>
+        <audio controls>
+          <source src="songs/${song.file}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <br>
+        <a href="songs/${song.file}" download><button>Download</button></a>
+        <button onclick="shareSong('${song.title}')">Share</button>
+      `;
+      container.appendChild(div);
+    });
+  })
+  .catch(err => console.error("Error loading songs:", err));
 
 // Share function
 function shareSong(title){
@@ -65,4 +63,4 @@ function shareSong(title){
 </script>
 
 </body>
-      </html>
+  </html>

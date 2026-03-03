@@ -1,61 +1,67 @@
-<!DOCTYPE html>
+<!DO<!DOCTYPE html>
 <html>
 <head>
-<title>Bennix Music | Home</title>
+<title>Bennix Music | Music</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="top-bar">WELCOME TO BENNIX MUSIC</div>
+<div class="top-bar">MUSIC</div>
 
 <nav>
-    <a href="index.html">Home</a> |
-    <a href="music.html">Music</a> |
-    <a href="freebeat.html">Freebeats</a> |
-    <a href="mixtape.html">Mixtapes</a> |
-    <a href="video.html">Videos</a> |
-    <a href="news.html">News</a> |
-    <a href="about.html">About</a> |
-    <a href="https://wa.me/2349072008740" target="_blank">Submit Music</a> |
-    <a href="https://mcbenboss.rechargewebsite.com" target="_blank">Recharge & Data</a>
+  <a href="index.html">Home</a> |
+  <a href="music.html">Music</a> |
+  <a href="freebeat.html">Freebeats</a> |
+  <a href="mixtape.html">Mixtapes</a> |
+  <a href="video.html">Videos</a> |
+  <a href="news.html">News</a> |
+  <a href="about.html">About</a> |
+  <a href="https://wa.me/2349072008740" target="_blank">Submit Music</a> |
+  <a href="https://mcbenboss.rechargewebsite.com" target="_blank">Recharge & Data</a>
 </nav>
 
-<div class="section">
-    <h2>Latest Music</h2>
-    <div class="music-card">
-        <p>MC BEN X HEAVENLY BOY - True Life Story</p>
-        <audio controls>
-            <source src="songs/mcben-heavenly-boy.mp3" type="audio/mpeg">
-        </audio>
-        <a href="music.html"><button>See All Music</button></a>
-    </div>
-    <div class="music-card">
-        <p>MC BEN - Temptation</p>
-        <audio controls>
-            <source src="songs/temptation.mp3" type="audio/mpeg">
-        </audio>
-        <a href="music.html"><button>See All Music</button></a>
-    </div>
-</div>
-
-<div class="section">
-    <h2>Freebeats</h2>
-    <div class="music-card">
-        <p>Freebeat 1</p>
-        <a href="freebeat.html"><button>See All Freebeats</button></a>
-    </div>
-</div>
-
-<div class="section">
-    <h2>News</h2>
-    <div class="news-card">
-        <p>MC BEN drops new single “Fall For You”</p>
-        <a href="news.html"><button>See All News</button></a>
-    </div>
-</div>
+<div class="section-title">ALL SONGS</div>
+<div id="songs-container"></div>
 
 <footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
 
+<script>
+// List of your songs
+const songs = [
+  { title: "MC BEN X HEAVENLY BOY - True Life Story", file: "mcben-heavenly-boy.mp3" }
+];
+
+const container = document.getElementById("songs-container");
+
+// Create music cards dynamically
+songs.forEach(song => {
+  const div = document.createElement("div");
+  div.className = "music-card";
+  div.innerHTML = `
+    <h3>${song.title}</h3>
+    <audio controls>
+      <source src="songs/${song.file}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <br>
+    <a href="songs/${song.file}" download><button>Download</button></a>
+    <button onclick="shareSong('${song.title}')">Share</button>
+  `;
+  container.appendChild(div);
+});
+
+// Share function
+function shareSong(title){
+  const mainLink = window.location.href;
+  if(navigator.share){
+    navigator.share({title:title,text:"Listen on Bennix Music:",url:mainLink})
+      .catch(()=>alert("Sharing failed"));
+  } else {
+    prompt("Copy this link:", mainLink);
+  }
+}
+</script>
+
 </body>
-</html>
+</html>￼Enter

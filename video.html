@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bennix Music | Music</title>
+<title>Bennix Music | Videos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="top-bar">ALL MUSIC</div>
+<div class="top-bar">VIDEOS</div>
 
 <nav>
     <a href="index.html">Home</a> |
@@ -19,41 +19,37 @@
     <a href="about.html">About</a>
 </nav>
 
-<div class="section" id="songs-container"></div>
+<div class="section" id="video-container"></div>
 
 <footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
 
 <script>
-// List all songs (use exact filenames)
-const songs = [
-    {title:"MC BEN X HEAVENLY BOY - True Life Story", file:"mcben-heavenly-boy.mp3"},
-    {title:"Nairaty ft MC BEN - Ginger", file:"ginger.mp3"},
-    {title:"MC BEN - Temptation", file:"temptation.mp3"},
-    {title:"MC BEN - Fall For You", file:"fall-for-you.mp3"},
-    {title:"MC BEN - Confuse", file:"confuse.mp3"}
+const videos = [
+    {title:"MC BEN - Live Performance", file:"videos/live-performance.mp4"},
+    {title:"MC BEN - Music Video", file:"videos/music-video.mp4"}
 ];
 
-const container = document.getElementById("songs-container");
+const container = document.getElementById("video-container");
 
-songs.forEach(song => {
+videos.forEach(v => {
     const div = document.createElement("div");
     div.className = "music-card";
     div.innerHTML = `
-        <p>${song.title}</p>
-        <audio controls>
-            <source src="songs/${song.file}" type="audio/mpeg">
-        </audio>
+        <p>${v.title}</p>
+        <video controls width="100%">
+            <source src="${v.file}" type="video/mp4">
+        </video>
         <br>
-        <a href="songs/${song.file}" download><button>Download</button></a>
-        <button onclick="shareSong('${song.title}','songs/${song.file}')">Share</button>
+        <a href="${v.file}" download><button>Download</button></a>
+        <button onclick="shareVideo('${v.title}','${v.file}')">Share</button>
     `;
     container.appendChild(div);
 });
 
-function shareSong(title, path){
+function shareVideo(title,path){
     const fullLink = window.location.origin + "/" + path;
     if(navigator.share){
-        navigator.share({title:title,text:"Listen on BENNIX MUSIC",url:fullLink})
+        navigator.share({title:title,text:"Watch this video:",url:fullLink})
         .catch(()=>alert("Sharing failed"));
     } else {
         prompt("Copy this link:", fullLink);

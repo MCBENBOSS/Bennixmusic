@@ -1,0 +1,47 @@
+here<!DOCTYPE html>
+<html>
+<head>
+<title>Bennix Music | News</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">NEWS</div>
+
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="music.html">Music</a> |
+    <a href="freebeat.html">Freebeats</a> |
+    <a href="mixtape.html">Mixtapes</a> |
+    <a href="video.html">Videos</a> |
+    <a href="news.html">News</a> |
+    <a href="about.html">About</a>
+</nav>
+
+<div class="section" id="news-container"></div>
+
+<footer>© 2026 BENNIX MUSIC | All Rights Reserved</footer>
+
+<script>
+const news = [
+    {title:"MC BEN drops new single 'Fall For You'", file:"#"},
+    {title:"Upcoming Music Event in Lagos", file:"#"},
+    {title:"MC BEN featured on international playlist", file:"#"}
+];
+
+const container = document.getElementById("news-container");
+
+news.forEach(n => {
+    const div = document.createElement("div");
+    div.className = "news-card";
+    div.innerHTML = `
+        <p>${n.title}</p>
+        <a href="${n.file}"><button>Read More</button></a>
+    `;
+    container.appendChild(div);
+});
+</script>
+
+</body>
+  </html>
